@@ -1,0 +1,39 @@
+{
+  "Ace Pilot": [
+      "+1 to DEX<br/>",
+      "THEME KNOWLEDGE (1ST)<br/> You are obsessed with starships and vehicles, and have committed to memory almost every related tidbit of knowledge you’ve ever come across. Reduce the DC of Culture checks to recall knowledge about starship and vehicle models and partsas well as famous hotshot pilots by 5. Piloting is a class skillfor you, though if it is a class skill from the class you takeat 1st level, you instead gain a +1 bonus to your Pilotingchecks. In addition, you gain an ability adjustment of+1 to Dexterity at character creation.<br/>",
+      "LONE WOLF (6TH)<br/> You know at least a little bit about handling every roleon a starship, and you can sub in for certain tasks in apinch. Whenever you need to attempt a skill check eitherduring starship combat or to directly repair or otherwisemaintain your starship, you can treat half your ranks inPiloting as your ranks in the appropriate skill for the check,if that would be better (since you effectively have ranks inthe related skill, you are considered trained in the skill for thepurposes of this check).<br/>",
+      "NEED FOR SPEED (12TH)<br/> Speeding in a vehicle gives you a heady rush, and you can easily handle operating vehicles at high velocities thatmight send lesser pilots spinning out of control. Reduce anypenalties to Piloting checks you make when on a vehicle by 1.When you take the double maneuver action during a vehiclechase (see page 283), reduce the penalty for each action by1. Whenever a Piloting check has a penalty for failing by 5or more, you take that penalty only if you fail by 10 or more.<br/>",
+      "MASTER PILOT (18TH)<br/> Your piloting accomplishments invigorate you, giving you renewed purpose and zeal. Up to twice per day, when you defeat a significant foe in starship combat as a pilot or succeed in a vehicle chase (meaning that youve either escaped a pursuer or caught or defeated your opponent), yourecover 1 Resolve Point.<br/>"
+  ],
+  "Priest" :[
+    "TBD"
+  ],
+  "Bounty Hunter" : [
+    "TBD"
+  ],
+  "Scholar" : [
+    "TBD"
+  ],
+  "Icon" : [
+    "TBD"
+  ],
+  "Spacefarer" : [
+    "TBD"
+  ],
+  "Mercenary" : [
+    "TBD"
+  ],
+  "Xenoseeker" : [
+    "TBD"
+  ],
+  "Outlaw" : [
+    "TBD"
+  ],
+  "Themeless": [
+    "GENERAL KNOWLEDGE (1ST)<br/> You gain a class skill of your choice when you create a themeless character. Also you gain an ability adjustment of +1 to any ability score you choose.",
+    "CERTAINTY (6TH)<br/> Once per day you roll a skill check you can gain a +2 bonus to that skill for that check. <br/>",
+    "EXTENSIVE STUDIES (12TH)<br/> Choose a skill that is a class skill for you. Once per day, you can reroll one such skill before learning the results of the roll. You must take the second result, even if it is worse.",
+    "STEELY DETERMINATION (18TH)<br/> Increase your pool of Resolve points by 1."
+  ]
+}

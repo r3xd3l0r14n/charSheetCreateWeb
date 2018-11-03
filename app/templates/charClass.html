@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Select a theme and then a Race</h1>
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <p> Select a theme (Later selecting a theme will populate data about that them to the right) <br>
+            {{ form.theme }} <br>
+            <p>Pick a class, (Later do same as above)</p>
+            {{ form.charCls}} <br>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% autoescape false %}
+<div class="theme-info" style="width: 600px;background-color: #136a80; border: black solid 9px;"><h3 id="theme-header"></h3><p id="theme-data"></p></div>
+{% endautoescape %}
+<script>
+    $(document).ready(function () {
+        $('#theme').change(function () {
+            let theme = $('#theme').val();
+
+            //Make Ajax request
+            $.getJSON(
+                '/get_theme' + '/' + theme,
+                function (data) {
+                    $('#theme-header').text(theme)
+                    $('#theme-data').empty();
+                    $('#theme-data').append(data);
+                }
+            )
+        });
+        // $('#charCls').change(function () {
+        //     let charCls = $('#charCls').val();
+        //
+        //     $.getJSON(
+        //         '/get_class' + '/' + charCls,
+        //         function (data) {
+        //             $('#theme-header').text(charCls);
+        //             $('#theme-data').empty().append(data);
+        //         }
+        //     )
+        // })
+    })
+</script>
+{% endblock %}

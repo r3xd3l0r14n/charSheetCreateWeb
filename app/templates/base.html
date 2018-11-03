@@ -1,0 +1,27 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - CharacterGen</title>
+      {% else %}
+      <title>Welcome to Character Generator</title>
+      {% endif %}
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <link type="text/css" href="../static/css/style.css" />
+    </head>
+    <body>
+        <div>CharCreate: <a href="/index">Home</a>
+                        <a href="/charN">New Char</a>
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>
