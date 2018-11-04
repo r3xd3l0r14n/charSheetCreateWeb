@@ -1,7 +1,7 @@
 from flask import render_template, send_file, redirect, url_for, jsonify
 from app import app
 from app.forms import charNForm, charClassForm
-from character import Character
+from app.character import Character
 import json
 
 char = Character()
