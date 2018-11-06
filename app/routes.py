@@ -36,7 +36,7 @@ def charClass():
 
 @app.route('/show/static-pdf')
 def show_static_pdf():
-    return send_file('../destination.pdf', mimetype='application/pdf', attachment_filename='file.pdf')
+    return send_file('destination.pdf', mimetype='application/pdf', attachment_filename='file.pdf')
 
 
 @app.route('/get_theme/<theme>')
