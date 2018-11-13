@@ -11,9 +11,11 @@ class Character:
         self.race = race
         self.gender = gender
 
-    def setClassTheme(self, charClass, theme):
-        self.charClass = charClass
+    def setTheme(self, theme):
         self.theme = theme
+
+    def setClass(self, cls):
+        self.cls = cls
 
     def createPDF(self):
         packet = io.BytesIO()

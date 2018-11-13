@@ -1,12 +1,17 @@
-.theme-info {
+.class-card {
+    border: 1px solid #DEDEDE;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 53px;
+    align-items: center;
+}
+.highlight-class-card {
+    border: 1px solid #DEDEDE;
     background-color: #136a80;
-    height: 400px;
-    width: 600px;
-    alignment: right;
-    margin: auto;
-    border:solid 6px #000000;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    box-shadow:#111 1px 1px 2px;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    min-height: 53px;
+    align-items: center;
 }

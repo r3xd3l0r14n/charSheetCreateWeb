@@ -1,44 +1,124 @@
 {% extends "base.html" %}
-
 {% block content %}
-    <h1>Select a theme and then a Race</h1>
-    <form action="" method="POST" novalidate>
-        {{ form.hidden_tag() }}
-        <p> Select a theme (Later selecting a theme will populate data about that them to the right) <br>
-            {{ form.theme }} <br>
-            <p>Pick a class, (Later do same as above)</p>
-            {{ form.charCls}} <br>
-        <p>{{ form.submit() }}</p>
-    </form>
-{% autoescape false %}
-<div class="theme-info" style="width: 600px;background-color: #136a80; border: black solid 9px;"><h3 id="theme-header"></h3><p id="theme-data"></p></div>
-{% endautoescape %}
-<script>
-    $(document).ready(function () {
-        $('#theme').change(function () {
-            let theme = $('#theme').val();
 
-            //Make Ajax request
-            $.getJSON(
-                '/get_theme' + '/' + theme,
-                function (data) {
-                    $('#theme-header').text(theme)
-                    $('#theme-data').empty();
-                    $('#theme-data').append(data);
-                }
-            )
-        });
-        // $('#charCls').change(function () {
-        //     let charCls = $('#charCls').val();
-        //
-        //     $.getJSON(
-        //         '/get_class' + '/' + charCls,
-        //         function (data) {
-        //             $('#theme-header').text(charCls);
-        //             $('#theme-data').empty().append(data);
-        //         }
-        //     )
-        // })
-    })
+<div class="container">
+    <div class="row"><br></div>
+    <div class="row">
+        <div class="col-sm">
+            <h1>Select a Class</h1>
+            <div class="class-card-group" id="class-card-group">
+                <div class="class-card" id="class-card-envoy">Envoy</div>
+                <div class="class-card" id="class-card-solarian">Solarian</div>
+                <div class="class-card" id="class-card-mechanic">Mechanic</div>
+                <div class="class-card" id="class-card-soldier">Soldier</div>
+                <div class="class-card" id="class-card-mystic">Mystic</div>
+                <div class="class-card" id="class-card-technomancer">Technomancer</div>
+                <div class="class-card" id="class-card-operative">Operative</div>
+            </div>
+            <form method="POST">
+                <input class="btn btn-primary" id="class-submit" type="submit" value="Choose Highlighted Class"></form>
+        </div>
+        <div class="col-sm">
+            <div class="card" style="background-color: #136a80; color: white;">
+                <div class="card-body">
+                    {% autoescape false %}
+                    <h3 class="card-title" id="cls-header"></h3>
+                    <p class="card-text" id="cls-data"></p>
+                    {% endautoescape %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#class-card-envoy').on('click', function () {
+        let v = $('#class-card-envoy');
+        $('[id^=class-card]').removeClass("highlight-class-card");
+        v.addClass("highlight-class-card");
+        $.getJSON(
+            '/get_class/' + v.text(),
+            function (data) {
+                $('#cls-header').text(v.text());
+                $('#cls-data').empty().append(data[v.text()]['FlavText'])
+            }
+        )
+    });
+    $('#class-card-solarian').on('click', function () {
+        let v = $('#class-card-solarian');
+        $('[id^=class-card]').removeClass("highlight-class-card");
+        v.addClass("highlight-class-card");
+        $.getJSON(
+            '/get_class/' + v.text(),
+            function (data) {
+                $('#cls-header').text(v.text());
+                $('#cls-data').empty().append(data[v.text()]['FlavText'])
+            }
+        )
+    });
+    $('#class-card-mechanic').on('click', function () {
+        let v = $('#class-card-mechanic');
+        $('[id^=class-card]').removeClass("highlight-class-card");
+        v.addClass("highlight-class-card");
+        $.getJSON(
+            '/get_class/' + v.text(),
+            function (data) {
+                $('#cls-header').text(v.text());
+                $('#cls-data').empty().append(data[v.text()]['FlavText'])
+            }
+        )
+    });
+    $('#class-card-soldier').on('click', function () {
+        let v = $('#class-card-soldier');
+        $('[id^=class-card]').removeClass("highlight-class-card");
+        v.addClass("highlight-class-card");
+        $.getJSON(
+            '/get_class/' + v.text(),
+            function (data) {
+                $('#cls-header').text(v.text());
+                $('#cls-data').empty().append(data[v.text()]['FlavText'])
+            }
+        )
+    });
+    $('#class-card-mystic').on('click', function () {
+        let v = $('#class-card-mystic');
+        $('[id^=class-card]').removeClass("highlight-class-card");
+        v.addClass("highlight-class-card");
+        $.getJSON(
+            '/get_class/' + v.text(),
+            function (data) {
+                $('#cls-header').text(v.text());
+                $('#cls-data').empty().append(data[v.text()]['FlavText'])
+            }
+        )
+    });
+    $('#class-card-technomancer').on('click', function () {
+        let v = $('#class-card-technomancer');
+        $('[id^=class-card]').removeClass("highlight-class-card");
+        v.addClass("highlight-class-card");
+        $.getJSON(
+            '/get_class/' + v.text(),
+            function (data) {
+                $('#cls-header').text(v.text());
+                $('#cls-data').empty().append(data[v.text()]['FlavText'])
+            }
+        )
+    });
+    $('#class-card-operative').on('click', function () {
+        let v = $('#class-card-operative');
+        $('[id^=class-card]').removeClass("highlight-class-card");
+        v.addClass("highlight-class-card");
+        $.getJSON(
+            '/get_class/' + v.text(),
+            function (data) {
+                $('#cls-header').text(v.text());
+                $('#cls-data').empty().append(data[v.text()]['FlavText'])
+            }
+        )
+    });
+    // $('#class-submit').on('click', function () {
+    //     $.post("/charSelection", function (response) {
+    //
+    //     })
+    // })
 </script>
 {% endblock %}

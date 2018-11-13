@@ -10,9 +10,13 @@ class charNForm(FlaskForm):
     gender = SelectField('Gender', choices=gender)
     submit = SubmitField('Next Step')
 
-class charClassForm(FlaskForm):
-    themes = [('Ace Pilot', 'Ace Pilot'), ('Priest', 'Priest'), ('Bounty Hunter', 'Bounty Hunter'), ('Scholar', 'Scholar'), ('Icon', 'Icon'), ('Spacefarer', 'Spacefarer'), ('Mercernary', 'Mercenary'), ('Xenoseeker', 'Xenoseeker'), ('Outlaw', 'Outlaw'), ('Themeless', 'Themeless')]
-    classes = [('Envoy', 'Envoy'), ('Solarian', 'Solarian'), ('Mechanic', 'Mechanic'), ('Soldier', 'Soldier'), ('Mystic', 'Mystic'), ('Technomancer', 'Technomancer'), ('Operative', 'Operative')]
+class charThemeForm(FlaskForm):
+    themes = [('Ace Pilot', 'Ace Pilot'), ('Priest', 'Priest'), ('Bounty Hunter', 'Bounty Hunter'), ('Scholar', 'Scholar'), ('Icon', 'Icon'), ('Spacefarer', 'Spacefarer'), ('Mercenary', 'Mercenary'), ('Xenoseeker', 'Xenoseeker'), ('Outlaw', 'Outlaw'), ('Themeless', 'Themeless')]
     theme = SelectField('Themes', choices=themes)
-    charCls = SelectField('Classes', choices=classes)
     submit = SubmitField('Next Step')
+
+class charClassForm(FlaskForm):
+    classes = [('Envoy', 'Envoy'), ('Solarian', 'Solarian'), ('Mechanic', 'Mechanic'), ('Soldier', 'Soldier'),
+               ('Mystic', 'Mystic'), ('Technomancer', 'Technomancer'), ('Operative', 'Operative')]
+    charCls = SelectField('Classes', choices=classes)
+    submit = SubmitField('Roll Attributes')

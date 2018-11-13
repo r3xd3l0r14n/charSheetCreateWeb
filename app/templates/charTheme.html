@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row"><br></div>
+    <div class="row">
+        <div class="col-sm">
+            <h1>Select a theme and then a Race</h1>
+            <form action="" method="POST" novalidate>
+                {{ form.hidden_tag() }}
+                <p> Select a theme <br>
+                    {{ form.theme }} <br>
+                <p>{{ form.submit() }}</p>
+            </form>
+        </div>
+        <div class="col-sm">
+            <div class="card" style="background-color: #136a80; color: white;">
+                <div class="card-body">
+                    {% autoescape false %}
+                    <h3 class="card-title" id="theme-header"></h3>
+                    <p class="card-text" id="theme-data"></p>
+                    {% endautoescape %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#theme').change(function () {
+            let theme = $('#theme').val();
+
+            //Make Ajax request
+            $.getJSON(
+                '/get_theme' + '/' + theme,
+                function (data) {
+                    $('#theme-header').text(theme);
+                    $('#theme-data').empty().append(data);
+                }
+            )
+        });
+    })
+</script>
+{% endblock %}
