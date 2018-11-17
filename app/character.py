@@ -17,15 +17,18 @@ class Character:
     def setClass(self, cls):
         self.cls = cls
 
+    def setImprovs(self, v):
+        self.improvs = v
+
     def createPDF(self):
         packet = io.BytesIO()
         # create a new PDF with Reportlab
         can = canvas.Canvas(packet, pagesize=letter)
-        can.drawString(155, 753, self.name) #Draw the name on the top
-        can.drawString(215, 731, self.race) #Draw our character race on the sheet
-        can.drawString(165, 710, self.gender) #Draw gender
-        can.drawString(20, 730, self.charClass) #Draw Class
-        can.drawString(315, 730, self.theme) #Theme
+        can.drawString(155, 753, self.name)  # Draw the name on the top
+        can.drawString(215, 731, self.race)  # Draw our character race on the sheet
+        can.drawString(165, 710, self.gender)  # Draw gender
+        can.drawString(20, 730, self.charClass)  # Draw Class
+        can.drawString(315, 730, self.theme)  # Theme
         can.save()
 
         # move to the beginning of the StringIO buffer

@@ -1,5 +1,65 @@
 {
-  "Envoy": {
-    "FlavText": "You make your way in the universe with a charming smile, quick wit, and keen sense of self-preservation, and excel at letting others to do what you want. You might be a trickster, hustler, or con artist, or you might serve as an actor, ambassador, or businessperson, paving the way for negotiation through kind words or the occasional dirty trick. You are often the group’s strategist, using your quick wit and tactical acumen to push your friends to greater heights. You may also be skilled in diplomacy, serving as the face for a starship crew, talking your way into restricted systems or gaining audiences"
+  "FlavText": "You make your way in the universe with a charming smile, quick wit, and keen sense of self-preservation, and excel at letting others to do what you want. You might be a trickster, hustler, or con artist, or you might serve as an actor, ambassador, or businessperson, paving the way for negotiation through kind words or the occasional dirty trick. You are often the group’s strategist, using your quick wit and tactical acumen to push your friends to greater heights. You may also be skilled in diplomacy, serving as the face for a starship crew, talking your way into restricted systems or gaining audiences",
+  "keyScore": "Charisma",
+  "spT": "6 + Constitution Modifier",
+  "sp" : "6",
+  "hp": "6",
+  "sRanksT": "8 + Intelligence Modifier",
+  "sRanks" : "8",
+  "cSkills": [
+    "Acrobatics",
+    "Athletics",
+    "Bluff",
+    "Computers",
+    "Culture",
+    "Diplomacy",
+    "Disguise",
+    "Engineering",
+    "Intimidate",
+    "Medicine",
+    "Perception",
+    "Piloting",
+    "Profession",
+    "Sense Motive",
+    "Sleight of Hand",
+    "Stealth"
+  ],
+  "aProf": "Light Armor",
+  "wProf": [
+    "Basic Melee",
+    "Grenades",
+    "Small Arms"
+  ],
+  "1": {
+    "bab": "0",
+    "fSave": "0",
+    "rSave": "2",
+    "wSave": "2",
+    "abilities": {
+      "EnvoyImprovisation" : {
+        "title" : "Envoy Improvisation",
+        "flavText" : "As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck. You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter. If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier. Some envoy improvisations are language-dependent, mindaffecting, sense-dependent, or some combination of any or all of these."
+      },
+      "Expertise" : {
+        "title" : "Expertise",
+        "flavText" : "You are an expert at dealing with challenges that test your skills, be the challenges social or otherwise. At 1st level, when attempting a Sense Motive check, you can roll 1d6 (your expertise die) and add the result of the roll to your check as an insight bonus. You can use this and other expertise abilities as long as you have at least 1 Resolve Point remaining. At 5th level, anytime you roll your expertise die, you gain a +1 bonus to the result. At 9th, 17th, and 20th levels, this bonus increases by 1. At 13th level, you roll 1d8 as your expertise die instead of 1d6. Beginning at 9th level, you have even greater expertise with skills to which you can add your expertise die that you have also selected with the Skill Focus feat. For each such skill, once per day when rolling your expertise die to add to that skill, you may roll the expertise die twice and take the better of the two results."
+      },
+      "SkillExpertise" : {
+        "title" : "Skill Expertise",
+        "flavText" : "At 1st level and every 4 levels thereafter, you can use expertise with one additional class skill. You must have at least 1 rank in a skill to select it, and it must come from the following list: Bluff (Cha), Computers (Int), Culture (Int), Diplomacy (Cha), Disguise (Cha), Engineering (Int), Intimidate (Cha), and Medicine (Int)."
+      }
+    },
+    "improvs" : {
+      "1": {
+        "title" : "Clever Feint",
+        "value" : "clFeint",
+        "text" : "As a standard action you can fake out an enenmy within 60 feet, making that enemy open to your attacks. Attempt a Bluff check with the same DC as a check to feint against that enemy (though this isn't a standard check to feint, so Improved Feint and Greater Feint don't apply). Even if you fail, that enemy is flat-footed against your attacks until the end of your next turn. If you succeed, the enemy is also flat-footed against your allie's attacks until the end of your next turn. You can't use clever feint against a creature that lacks an Intellgience Score. At 6th level, you can spend 1 Resolve Point to treat a failed Bluff check for clever feint as if it were a success."
+      },
+      "2" : {
+        "title" : "Dispiriting Taunt",
+        "value" : "disTaunt",
+        "text" : "As a standard action you can taunt an enemy within 60 feet. Attempt an Intimidate Check with the same DC as a check to demoralize that enemy (thought this isn't a check to demoralize, so you can't use abilities that would apply to a demoralization attempt, like the rattling presence expertise talent). If you fail, that enemy is off-target until the end of your next turn. If you succeed, that enemy is instead shaken until the end of your next turn. This is an emotion and fear effect. At 6th level you can spend 1 resolve point to trat a fialed intimidate check for dispiriting taunt as if it were a success."
+      }
+    }
   }
 }

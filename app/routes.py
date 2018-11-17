@@ -44,9 +44,13 @@ def charClass():
         return redirect(url_for(s))
     return render_template('charClass.html', title="Pick A Class")
 
-
-@app.route('/charSelectionEnvoy')
+#Character Ability Description and Selection Screens
+@app.route('/charSelectionEnvoy', methods=['GET', 'POST'])
 def charSelEnvoy():
+    if request.method == 'POST':
+        v = request.form['sel1']
+        char.setImprovs(v)
+        return redirect(url_for('rollAttrib'))
     return render_template('classSel/charSelEnvoy.html', title="Envoy")
 
 @app.route('/charSelectionMechanic')
@@ -73,7 +77,12 @@ def charSelSoldier():
 def charSelOperative():
     return render_template('classSel/charSelOperative.html', title="Operative")
 
+#Rolling Attributes screen
+@app.route('/rollAttrib')
+def rollAttrib():
+    return render_template('rollAttrib.html', title='Roll Attributes')
 
+#Final Screen to show the pdf Files
 @app.route('/show/static-pdf')
 def show_static_pdf():
     return send_file('destination.pdf', mimetype='application/pdf', attachment_filename='file.pdf')
@@ -96,5 +105,8 @@ def get_class(charCls):
     char.setClass(charCls)
     with open(charClsJson, 'rb') as file:
         charClsFile = json.load(file)
-    if charClsFile[charCls]:
+    if charCls == "Envoy":
         return jsonify(charClsFile)
+    elif charClsFile[charCls]:
+        return jsonify(charClsFile)
+
