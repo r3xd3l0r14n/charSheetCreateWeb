@@ -1,4 +1,399 @@
 {% extends "base.html" %}
 {% block content %}
-I'm Ready to roll some attributes
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="row">
+        <div class="col">
+            <label for="attrType">Select Attribute Method</label><br>
+            <select id="attrType">
+                <option value="pB">Point Buy</option>
+                <option value="qpF">Quick Pick: Focused</option>
+                <option value="qpS">Quick Pick: Split</option>
+                <option value="qpV">Quick Pick: Versatile</option>
+                <option value="rS">Roll Scores</option>
+            </select><br>
+            As a small note this page is still a WIP therefore please click on the Submit Scores button
+            <h3>BEFORE</h3>hitting select skills
+        </div>
+        <div class="col-6">
+            <div id="other">
+                <div class="row">
+                    <div class="col align-content-center attrib-center">
+                        <label for="str">Strength</label><br><select id="str">
+
+                    </select>
+                    </div>
+                    <div class="col align-content-center attrib-center">
+                        <label for="dex">Dexerity</label><br><select id="dex">
+
+                    </select>
+                    </div>
+                    <div class="col align-content-center attrib-center">
+                        <label for="con">Constitution</label><br><select id="con">
+
+                    </select>
+                    </div>
+                    <div class="col align-content-center attrib-center">
+                        <label for="int">Intelligence</label><br><select id="int">
+
+                    </select>
+                    </div>
+                    <div class="col align-content-center attrib-center">
+                        <label for="wis">Wisdom</label><br><select id="wis">
+
+                    </select>
+                    </div>
+                    <div class="col align-content-center attrib-center">
+                        <label for="cha">Charisma</label><br><select id="cha">
+
+                    </select>
+                    </div>
+                </div>
+            </div>
+            <div id="pointB">
+                <div class="row"><p>Remaining Attribute Points: </p>
+                    <p id="remP">10</p></div>
+                <div class="row">
+                    <div class="col align-self-center attrib-center">
+                        <p>Strength</p>
+                        <div class="input-group attrib-Point">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button" id="btnStrP">+1</button>
+                            </div>
+                            <input id="strP" type="text" class="form-control" placeholder=""
+                                   aria-label="Example text with button addon"
+                                   aria-describedby="button-addon1" value="10">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="btnStrM">-1</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col align-self-center attrib-center">
+                        <p>Dexterity</p>
+                        <div class="attrib-Point">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button" id="btnDexP">+1</button>
+                            </div>
+                            <input id="dexP" type="text" class="form-control" placeholder=""
+                                   aria-label="Example text with button addon"
+                                   aria-describedby="button-addon1" value="10">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="btnDexM">-1</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col align-self-center attrib-center">
+                        <p>Constitution</p>
+                        <div class="input-group attrib-Point">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button" id="btnConP">+1</button>
+                            </div>
+                            <input id="conP" type="text" class="form-control" placeholder=""
+                                   aria-label="Example text with button addon"
+                                   aria-describedby="button-addon1" value="10">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="btnConM">-1</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col align-self-center attrib-center">
+                        <p>Intelligence</p>
+                        <div class="input-group attrib-Point">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button" id="btnIntP">+1</button>
+                            </div>
+                            <input id="intP" type="text" class="form-control" placeholder=""
+                                   aria-label="Example text with button addon"
+                                   aria-describedby="button-addon1" value="10">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="btnIntM">-1</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col align-self-center attrib-center">
+                        <p>Wisdom</p>
+                        <div class="input-group attrib-Point">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button" id="btnWisP">+1</button>
+                            </div>
+                            <input id="wisP" type="text" class="form-control" placeholder=""
+                                   aria-label="Example text with button addon"
+                                   aria-describedby="button-addon1" value="10">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="btnWisM">-1</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col align-self-center attrib-center">
+                        <p>Charisma</p>
+                        <div class="input-group attrib-Point">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button" id="btnChaP">+1</button>
+                            </div>
+                            <input id="chaP" type="text" class="form-control" placeholder=""
+                                   aria-label="Example text with button addon"
+                                   aria-describedby="button-addon1" value="10">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="btnChaM">-1</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <button class="btn btn-primary" id="score">Submit Scores</button>
+            </div>
+            <div class="row">
+                <form method="post">
+                    <button class="btn btn-primary">Select Skills</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let attrib;
+    let attrR;
+    let retArr = {'str': 0, 'dex': 0, 'con': 0, 'int': 0, 'wis': 0, 'cha': 0};
+
+    $(document).ready(function () {
+        $('#other').hide();
+        $.getJSON('/get_attrib', function (data) {
+            attrib = data;
+        })
+    });
+    $('#attrType').on('change', function () {
+        let x = $('#attrType').val();
+        if (x === 'pB') {
+            $('#pointB').show();
+            $('#other').hide();
+        } else if (x === 'qpF') {
+            $('#pointB').hide();
+            $('#other').show();
+            console.log(attrib['attribQF'])
+
+            attrR = attrib['attribQF']
+            resetRetArr(attrR)
+        } else if (x === 'qpS') {
+            $('#pointB').hide();
+            $('#other').show();
+            console.log(attrib['attribQS'])
+
+            attrR = attrib['attribQS']
+            resetRetArr(attrR)
+
+        } else if (x === 'qpV') {
+            $('#pointB').hide();
+            $('#other').show();
+            console.log(attrib['attribQV'])
+
+            attrR = attrib['attribQV']
+            resetRetArr(attrR)
+        } else if (x === 'rS') {
+            $('#pointB').hide();
+            $('#other').show();
+
+            //Populate the dropdowns
+            attrR = attrib['roll'];
+            resetRetArr(attrR)
+        }
+    });
+    // This code handles the increment and decrement from the point buy system...
+    // TODO - Possibly abstract this a little bit better wildcards are key here 11/27/2018 CRD
+    $('#btnStrP').on('click', function () {
+        increment('#strP')
+        setPBVal('#strP')
+    });
+    $('#btnStrM').on('click', function () {
+        decrement('#strP')
+        setPBVal('#strP')
+    });
+    $('#btnDexP').on('click', function () {
+        increment('#dexP')
+        setPBVal('#dexP')
+    });
+    $('#btnDexM').on('click', function () {
+        decrement('#dexP')
+        setPBVal('#dexP')
+    });
+    $('#btnConP').on('click', function () {
+        increment('#conP')
+        setPBVal('#conP')
+    });
+    $('#btnConM').on('click', function () {
+        decrement('#conP')
+        setPBVal('#conP')
+    });
+    $('#btnIntP').on('click', function () {
+        increment('#intP')
+        setPBVal('#intP')
+    });
+    $('#btnIntM').on('click', function () {
+        decrement('#intP')
+        setPBVal('#intP')
+    });
+    $('#btnWisP').on('click', function () {
+        increment('#wisP')
+        setPBVal('#wisP')
+    });
+    $('#btnWisM').on('click', function () {
+        decrement('#wisP')
+        setPBVal('#wisP')
+    });
+    $('#btnChaP').on('click', function () {
+        increment('#chaP')
+        setPBVal('#chaP')
+    });
+    $('#btnChaM').on('click', function () {
+        decrement('#chaP')
+        setPBVal('#chaP')
+    });
+
+    //Point buy helper functions
+    function increment(sel) {
+        let pRem = $('#remP').text();
+        let num = $(sel).val();
+        if (pRem > 0) {
+            num++;
+            pRem--;
+            $(sel).val(num);
+            $('#remP').empty().text(pRem);
+        }
+        else {
+            console.log("No more Points available to spend")
+        }
+    }
+
+    function decrement(sel) {
+        let pRem = $('#remP').text();
+        let num = $(sel).val();
+        num--;
+        pRem++;
+        $(sel).val(num);
+        $('#remP').empty().text(pRem);
+    }
+
+    function setPBVal(sel){
+        let v = $(sel).val();
+        nSel = sel.replace("P","");
+
+        retArr[nSel.slice(1)] = v;
+        console.log(retArr[nSel.slice(1)])
+    }
+
+
+    //TODO - Possibly a way to abstract this down even further but right now it does as close as i need. 11/27/2018 CRD
+    //Roll Scores code - Potential to reuse this code for other functions
+    $('#str').on('change', function () {
+        let v = $(this).val();
+        $(this).empty().append($('<option/>', {
+            value: v,
+            text: v
+        }));
+        retArr['str'] = v;
+        checkFillDrop(v, attrR)
+    });
+    $('#dex').on('change', function () {
+        let v = $(this).val();
+        $(this).empty().append($('<option/>', {
+            value: v,
+            text: v
+        }));
+        retArr['dex'] = v;
+        checkFillDrop(v, attrR)
+    });
+    $('#con').on('change', function () {
+        let v = $(this).val();
+        $(this).empty().append($('<option/>', {
+            value: v,
+            text: v
+        }));
+        retArr['con'] = v;
+        checkFillDrop(v, attrR)
+    });
+    $('#int').on('change', function () {
+        let v = $(this).val();
+        $(this).empty().append($('<option/>', {
+            value: v,
+            text: v
+        }));
+        retArr['int'] = v;
+        checkFillDrop(v, attrR)
+    });
+    $('#wis').on('change', function () {
+        let v = $(this).val();
+        $(this).empty().append($('<option/>', {
+            value: v,
+            text: v
+        }));
+        retArr['wis'] = v;
+        checkFillDrop(v, attrR)
+    });
+    $('#cha').on('change', function () {
+        let v = $(this).val();
+        $(this).empty().append($('<option/>', {
+            value: v,
+            text: v
+        }));
+        retArr['cha'] = v;
+        checkFillDrop(v, attrR)
+    });
+
+
+    //Calculated scores helper functions
+    function loadDrop(atr, sel) {
+        $(sel).empty().append($('<option/>', {
+            value: "",
+            text: ""
+        }));
+        $.each(atr, function (item) {
+            let bar = atr[item];
+            $(sel).append($('<option/>', {
+                value: bar,
+                text: bar
+            }));
+        })
+    }
+
+    function arrayRemove(arr, v) {
+        flag = 1;
+        for (let i = 0; i < arr.length - 1; i++) {
+            if (arr[i] == v && flag == 1) {
+                arr.splice(i, 1);
+                flag = 0
+            }
+        }
+        return arr
+    }
+
+    function checkFillDrop(v, masArr) {
+        let newArr = arrayRemove(masArr, v);
+        for (x in retArr) {
+            if (retArr[x] == 0) {
+                loadDrop(newArr, '#' + x)
+            }
+        }
+    }
+
+    function resetRetArr(masArr) {
+        for (x in retArr) {
+            retArr[x] = 0;
+            loadDrop(masArr, '#' + x)
+        }
+    }
+
+    //Post function for submit scores
+    $('#score').on('click', function () {
+        retArr['method'] = $('#attrType').val();
+        console.log(retArr);
+        $.post({
+            url: '/setAttrib',
+            contentType: 'application/json',
+            data: JSON.stringify(retArr),
+        })
+    })
+
+
+</script>
 {% endblock %}

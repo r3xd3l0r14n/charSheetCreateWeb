@@ -45,6 +45,7 @@ def charClass():
     return render_template('charClass.html', title="Pick A Class")
 
 #Character Ability Description and Selection Screens
+# TODO - return to this to make it more concise 11/27/2018 CRD
 @app.route('/charSelectionEnvoy', methods=['GET', 'POST'])
 def charSelEnvoy():
     if request.method == 'POST':
@@ -78,9 +79,16 @@ def charSelOperative():
     return render_template('classSel/charSelOperative.html', title="Operative")
 
 #Rolling Attributes screen
-@app.route('/rollAttrib')
+@app.route('/rollAttrib', methods=['GET','POST'])
 def rollAttrib():
+    if request.method == 'POST':
+        return redirect(url_for("selSkills"))
     return render_template('rollAttrib.html', title='Roll Attributes')
+
+@app.route('/selSkills', methods=['GET', 'POST'])
+def selSkills():
+    return render_template('selSkills.html', title='Select Skills')
+
 
 #Final Screen to show the pdf Files
 @app.route('/show/static-pdf')
@@ -109,4 +117,18 @@ def get_class(charCls):
         return jsonify(charClsFile)
     elif charClsFile[charCls]:
         return jsonify(charClsFile)
+
+@app.route('/get_attrib')
+def getAttrib():
+    with open('json/attrib.json', 'rb') as f:
+        attribJSON = json.load(f)
+    attribJSON['roll'] = char.rollAtr()
+    return jsonify(attribJSON)
+
+@app.route('/setAttrib', methods=['GET', 'POST'])
+def setAttrib():
+    data = request.json
+    char.checkAttribs(data)
+    # char.setAttrib(data)
+    return "Got the message"
 
