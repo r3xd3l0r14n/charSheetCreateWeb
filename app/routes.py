@@ -87,7 +87,13 @@ def rollAttrib():
 
 @app.route('/selSkills', methods=['GET', 'POST'])
 def selSkills():
+    if request.method == 'POST':
+        return redirect(url_for("feats"))
     return render_template('selSkills.html', title='Select Skills')
+
+@app.route('/feats', methods=['GET', 'POST'])
+def feats():
+    return render_template('feats.html', title='Feats')
 
 
 #Final Screen to show the pdf Files
@@ -95,7 +101,10 @@ def selSkills():
 def show_static_pdf():
     return send_file('destination.pdf', mimetype='application/pdf', attachment_filename='file.pdf')
 
-## Helper Routes
+
+###################################
+### HELPER ROUTES
+###################################
 @app.route('/get_theme/<theme>')
 def get_theme(theme):
     with open('json/theme.json', 'rb') as file:
@@ -125,10 +134,28 @@ def getAttrib():
     attribJSON['roll'] = char.rollAtr()
     return jsonify(attribJSON)
 
+@app.route('/getSkills')
+def getSkills():
+    with open('json/skills.json', 'rb') as f:
+        skillJSON = json.load(f)
+    skillJSON['class'] = char.cls.lower()
+    with open('json/classes/'+skillJSON['class']+'.json', 'rb') as f:
+        cls = json.load(f)
+    ABM = char.abMods[char.attribs[cls['sRanksABM']]]
+    ranks = cls['sRanks']
+    skillJSON['ranks'] = int(ABM)+int(ranks)
+    skillJSON['abMod'] = char.atribMod
+    return jsonify(skillJSON)
+
 @app.route('/setAttrib', methods=['GET', 'POST'])
 def setAttrib():
     data = request.json
-    char.checkAttribs(data)
-    # char.setAttrib(data)
+    char.checkAttribs(data) #This sets the skills at the same time
+    return "Got the message"
+
+@app.route('/setSkills', methods=['GET', 'POST'])
+def setSkill():
+    data = request.json
+    char.setSkills(data)
     return "Got the message"
 

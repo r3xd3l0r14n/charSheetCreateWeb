@@ -5,9 +5,12 @@ from reportlab.lib.pagesizes import letter
 
 
 class Character:
-
     attrRoll = []
     attribs = {}
+    atribMod = {}
+    abMods = {"1": "-5", "2": "-4", "3": "-4", "4": "-3", "5": "-3", "6": "-2", "7": "-2", "8": "-1", "9": "-1",
+              "10": "0", "11": "0", "12": "1", "13": "1", "14": "2", "15": "2", "16": "3", "17": "3", "18": "4",
+              "19": "4", "20": "5"}
 
     def setNameRace(self, name, race, gender):
         self.name = name
@@ -45,29 +48,40 @@ class Character:
                 print(v)  # TODO - Actually finish this section CRD 07Dec2018
         elif met == 'qpF':
             for k, v in data.items():
-                if v == 18 or 14 or 11 or 10:
-                    print(v)
+                if v == 'qpF':
+                    print("Method is QPF")
+                elif v == "18" or "14" or "11" or "10":
                     self.attribs[k] = v
-            print(self.attribs)
+                    self.atribMod[k] = self.abMods[v]
+
         elif met == 'qpS':
             for k, v in data.items():
-                if v == 16 or 11 or 10:
-                    print(v)
+                if v == 'qpf':
+                    print('method is QPS')
+                elif v == 16 or 11 or 10:
                     self.attribs[k] = v
-            print(self.attribs)
+                    self.atribMod[k] = self.abMods[v]
+
         elif met == 'qpV':
             for k, v in data.items():
-                if v == 14 or 11 or 10:
-                    print(v)
+                if v == 'qpF':
+                    print("Method is QPV")
+                elif v == 14 or 11 or 10:
                     self.attribs[k] = v
-            print(self.attribs)
+                    self.atribMod[k] = self.abMods[v]
+
         elif met == 'rS':
             for k, v in data.items():
                 if v == "rS":
-                    print("I'm just a place holder")
+                    pass
                 elif int(v) in self.attrRoll:
-                    print(v)
-            # Note sure how else to handle this
+                    self.attribs[k] = v
+                    self.atribMod[k] = self.abMods[v]
+
+    def setSkills(self, data):
+        self.skills = data
+        # Will buff this up more later as we get closer to actually building our PDF
+        #TODO - Finish this section for final CRD 12/24/2018
 
     def createPDF(self):
         packet = io.BytesIO()
@@ -96,3 +110,7 @@ class Character:
         outputStream = open("destination.pdf", "wb")
         output.write(outputStream)
         outputStream.close()
+
+
+
+

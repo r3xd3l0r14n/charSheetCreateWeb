@@ -1,0 +1,124 @@
+{
+  "1":{
+    "name":"acro",
+    "flavNam":"Acrobatics (Dex)",
+    "class":["envoy","operative","solarian","soldier"],
+    "mod" : "dex"
+  },
+  "2":{
+    "name":"athl",
+    "flavNam":"Athletics (Str)",
+    "class":["envoy","mechanic","operative","solarian","soldier"],
+    "mod" : "str"
+  },
+  "3":{
+    "name":"blf",
+    "flavNam":"Bluff (Cha)",
+    "class":["envoy","operative","mystic","technomancer"],
+    "mod" : "cha"
+  },
+  "4":{
+    "name":"comp",
+    "flavNam":"Computers (Int)",
+    "class":["envoy","Mechanic","operative","technomancer"],
+    "mod" : "int"
+  }
+  ,
+  "5":{
+    "name":"cult",
+    "flavNam":"Culture (Int)",
+    "class":["envoy","operative","mystic"],
+    "mod" : "int"
+  },
+  "6":{
+    "name":"diplo",
+    "flavNam":"Diplomacy (Cha)",
+    "class":["envoy","mystic","solarian"],
+    "mod" : "cha"
+  },
+  "7":{
+    "name":"disg",
+    "flavNam":"Disguise (Cha)",
+    "class":["envoy","operative","mystic"],
+    "mod" : "cha"
+  },
+  "8":{
+    "name":"engi",
+    "flavNam":"Engineering (Int)",
+    "class":["envoy","mechanic","operative","soldier","technomancer"],
+    "mod" : "int"
+  },
+  "9":{
+    "name":"inti",
+    "flavNam":"Intimidate (Cha)",
+    "class":["envoy","operative","solarian","soldier"],
+    "mod" : "cha"
+  },
+  "10":{
+    "name":"lfsci",
+    "flavNam":"Life Science (Int)",
+    "class":["mystic","technomancer"],
+    "mod" : "int"
+  },
+  "11":{
+    "name":"med",
+    "flavNam":"Medicine (Int)",
+    "class":["envoy", "mechanic","mystic", "operative", "soldier"],
+    "mod" : "int"
+  },
+  "12":{
+    "name":"myst",
+    "flavNam":"Mysticism (Wis)",
+    "class":["mystic","solarian","technomancer"],
+    "mod" : "wis"
+  },
+  "13":{
+    "name":"perc",
+    "flavNam":"Perception (Wis)",
+    "class":["envoy","mechanic","mystic","operative","solarian"],
+    "mod" : "wis"
+  },
+  "14":{
+    "name":"phsci",
+    "flavNam":"Physical Science (Int)",
+    "class":["mechanic","solarian","technomancer"],
+    "mod" : "int"
+  },
+  "15":{
+    "name":"pilot",
+    "flavNam":"Piloting (Dex)",
+    "class":["envoy","mechanic","operative","soldier","technomancer"],
+    "mod" : "dex"
+  },
+  "16":{
+    "name":"prof",
+    "flavNam":"Profession ()",
+    "class":["envoy","mechanic","mystic","operative","solarian","soldier","technomancer"],
+    "mod" : "cha"
+  },
+  "17":{
+    "name":"senmot",
+    "flavNam":"Sense Motive (Wis)",
+    "class":["envoy","mystic","operative","solarian"],
+    "mod" : "wis"
+  },
+  "18":{
+    "name":"slhand",
+    "flavNam":"Sleight Of Hand (Dex)",
+    "class":["envoy","operative","technomancer"],
+    "mod" : "dex"
+  },
+  "19":{
+    "name":"stlth",
+    "flavNam":"Stealth (Dex)",
+    "class":["envoy","operative","solarian"],
+    "mod" : "dex"
+  },
+  "20":{
+    "name":"surv",
+    "flavNam":"Survival (Wis)",
+    "class":["mystic","operative","soldier"],
+    "mod" : "wis"
+  }
+
+}

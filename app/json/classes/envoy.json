@@ -5,6 +5,7 @@
   "sp" : "6",
   "hp": "6",
   "sRanksT": "8 + Intelligence Modifier",
+  "sRanksABM" : "int",
   "sRanks" : "8",
   "cSkills": [
     "Acrobatics",

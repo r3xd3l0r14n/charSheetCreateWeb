@@ -1,4 +1,114 @@
 {% extends "base.html" %}
 {% block content %}
-<h3>Select your skills on this page</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-11"><p>To take a rank put 1 into hte field called rank.</p></div>
+        <div class="col-lg" id="skl">
+            <div class="row inline-group">
+                <div class="col-sm-1">Class Skills</div>
+                <div class="col-sm-2">Skill Name</div>
+                <div class="col-sm-1">Total Ranks=</div>
+                <div class="col-sm-1">Ranks+</div>
+                <div class="col-sm-1">Class Bonus+</div>
+                <div class="col-sm-1">Ability Mod+</div>
+                <div class="col-sm-1">Misc Mod</div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="row">
+                <label for="ranks">Ranks Available</label><input class="form-control" type="text"
+                                                                 id="ranks"><br>
+                <button id="sndSkl" class="btn btn-primary">Submit Skills</button>
+                <form method="post">
+                    <button type="submit" class="btn btn-primary ab-button">Next Page(Feats)</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var retData = {};
+
+    $(window).load(function () {
+        $.getJSON('/getSkills', function (data) {
+            let charCls = data['class'];
+            globData = data;
+            for (v in data) {
+                if (v === 'ranks') {
+                    $('#ranks').prop('value', data['ranks']).prop('disabled', true)
+                } else if (v === 'class') {
+                    console.log("Hit class, can't use a break here as it stops the loop")
+                } else if (v === 'abMod') {
+                    console.log('At this time do nothing');
+                    console.log(data[v])
+                } else if (data.hasOwnProperty(v)) {
+                    let e = '<div class="row">\n' + //TODO - Remove all id's from the divs as they aren't needed CRD 12/21/18
+                        '                <div class="col-sm-1" id="sklCls"><input type="checkbox" id="newID01" disabled></div>\n' +
+                        '                <div class="col-sm-2" id="sklNm"><span></span></div>\n' +
+                        '                <div class="col-sm-1" id="sklTot"><input class="form-control" type="text" id="sklITot" placeholder="0"\n' +
+                        '                                                         disabled></div>\n' +
+                        '                <div class="col-sm-1" id="sklIRnk"><input class="form-control" id="rank" type="text" placeholder="0"></div>\n' +
+                        '                <div class="col-sm-1" id="sklIClsBon"><input class="form-control" id="clsBon" type="text" placeholder="0" disabled>\n' +
+                        '                </div>\n' +
+                        '                <div class="col-sm-1" id="sklIAbM"><input class="form-control" id="abM" type="text" disabled>\n' +
+                        '                </div>\n' +
+                        '                <div class="col-sm-1" id="sklIMMd"><input class="form-control" type="text" placeholder="0" disabled></div>\n' +
+                        '            </div>';
+                    $('#skl').append(e);
+                    $('#newID01').attr('id', 'chk' + data[v]['name']);
+                    $('#sklNm').attr('id', "sklNm" + data[v]['name']);
+                    $('#sklTot').attr('id', "sklTot" + data[v]['name']);
+                    $('#sklITot').attr('id', "sklITot" + data[v]['name']);
+                    $('#sklIRnk').attr('id', "sklIRnk" + data[v]['name']);
+                    $('#sklIClsBon').attr('id', "sklIClsBon" + data[v]['name']);
+                    $('#clsBon').attr('id', "clsBon" + data[v]['name']);
+                    $('#sklIAbM').attr('id', "sklIAbM" + data[v]['name']);
+                    $('#abM').prop('id', 'abM' + data[v]['name']).prop('value', data['abMod'][data[v]['mod']]);
+                    $('#sklIMMd').attr('id', "sklIMMd" + data[v]['name']);
+                    $('#rank').attr('id', "rank" + data[v]['name']);
+                    $('#sklNm' + data[v]['name'] + ' span').text(data[v]['flavNam']);
+                    if (data[v]['class'].includes(charCls)) {
+                        $('#chk' + data[v]['name']).prop('checked', true);
+                        $('#clsBon' + data[v]['name']).prop('value', '3');
+                    } else{
+                        $('#clsBon' + data[v]['name']).prop('value', '0');
+                    }
+                }
+            }
+        });
+    }); //TODO - The code below needs to be srsly cleaned up its a hot mess CRD 12/21/18
+    $(document).on('change', '[id^=rank]', function () {
+        //Set Selectors
+        let y = $(this).attr('id');
+        let ranksA = $('#ranks');
+        let bon = $('#' + y.replace('rank', 'clsBon'));
+        let abM = $('#' + y.replace('rank', 'abM'));
+        let tot = $('#' + y.replace('rank', 'sklITot'));
+
+        //Set values
+        let x = $(this).val();
+        let m = ranksA.val();
+        ranksA.prop('value', m - x);
+
+        //Finally we are going to set our final skill value
+        finVal = parseInt(x) + parseInt(abM.val()) + parseInt(bon.val());
+        tot.prop('value', finVal);
+
+        retData[y.replace('rank', '')] = {
+            tot: finVal,
+            rnk: x,
+            abm: abM.val(),
+            bon: bon.val()
+        };
+        console.log(retData)
+    });
+    $('#sndSkl').on('click', function () {
+        console.log(retData);
+        $.post({
+            url: '/setSkills',
+            contentType: 'application/json',
+            data: JSON.stringify(retData),
+        })
+    })
+</script>
 {% endblock %}
