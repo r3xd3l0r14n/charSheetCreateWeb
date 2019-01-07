@@ -2,9 +2,10 @@ from flask import render_template, send_file, redirect, url_for, jsonify, reques
 from app import app
 from app.forms import *
 from app.character import Character
-import json
+import json, os
 
 char = Character()
+cwd = os.getcwd()
 
 
 @app.route('/')
@@ -88,7 +89,8 @@ def rollAttrib():
 @app.route('/selSkills', methods=['GET', 'POST'])
 def selSkills():
     if request.method == 'POST':
-        return redirect(url_for("feats"))
+        char.createPDF()
+        return redirect(url_for("feats")) #TODO - Change this back later
     return render_template('selSkills.html', title='Select Skills')
 
 @app.route('/feats', methods=['GET', 'POST'])
@@ -99,7 +101,7 @@ def feats():
 #Final Screen to show the pdf Files
 @app.route('/show/static-pdf')
 def show_static_pdf():
-    return send_file('destination.pdf', mimetype='application/pdf', attachment_filename='file.pdf')
+    return send_file('../destination.pdf', mimetype='application/pdf', attachment_filename='file.pdf')
 
 
 ###################################
@@ -107,7 +109,7 @@ def show_static_pdf():
 ###################################
 @app.route('/get_theme/<theme>')
 def get_theme(theme):
-    with open('json/theme.json', 'rb') as file:
+    with open(cwd+'/app/json/theme.json', 'rb') as file:
         themes = json.load(file)
     if theme in themes:
         print(jsonify(themes[theme]))
@@ -118,7 +120,7 @@ def get_theme(theme):
 
 @app.route('/get_class/<charCls>')
 def get_class(charCls):
-    charClsJson = 'json/classes/' + charCls + '.json'
+    charClsJson = cwd + '/app/json/classes/' + charCls.lower() + '.json'
     char.setClass(charCls)
     with open(charClsJson, 'rb') as file:
         charClsFile = json.load(file)
@@ -129,17 +131,17 @@ def get_class(charCls):
 
 @app.route('/get_attrib')
 def getAttrib():
-    with open('json/attrib.json', 'rb') as f:
+    with open(cwd+'/app/json/attrib.json', 'rb') as f:
         attribJSON = json.load(f)
     attribJSON['roll'] = char.rollAtr()
     return jsonify(attribJSON)
 
 @app.route('/getSkills')
 def getSkills():
-    with open('json/skills.json', 'rb') as f:
+    with open(cwd +'/app/json/skills.json', 'rb') as f:
         skillJSON = json.load(f)
     skillJSON['class'] = char.cls.lower()
-    with open('json/classes/'+skillJSON['class']+'.json', 'rb') as f:
+    with open(cwd+'/app/json/classes/'+skillJSON['class'].lower()+'.json', 'rb') as f:
         cls = json.load(f)
     ABM = char.abMods[char.attribs[cls['sRanksABM']]]
     ranks = cls['sRanks']

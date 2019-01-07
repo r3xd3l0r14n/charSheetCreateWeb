@@ -8,7 +8,7 @@
                 <div class="col-sm-1">Class Skills</div>
                 <div class="col-sm-2">Skill Name</div>
                 <div class="col-sm-1">Total Ranks=</div>
-                <div class="col-sm-1">Ranks+</div>
+                <div class="col-sm-2">Ranks+</div>
                 <div class="col-sm-1">Class Bonus+</div>
                 <div class="col-sm-1">Ability Mod+</div>
                 <div class="col-sm-1">Misc Mod</div>
@@ -42,66 +42,119 @@
                     console.log('At this time do nothing');
                     console.log(data[v])
                 } else if (data.hasOwnProperty(v)) {
-                    let e = '<div class="row">\n' + //TODO - Remove all id's from the divs as they aren't needed CRD 12/21/18
-                        '                <div class="col-sm-1" id="sklCls"><input type="checkbox" id="newID01" disabled></div>\n' +
+                    let e = '<div class="row">\n' +
+                        '                <div class="col-sm-1"><input type="checkbox" id="newID01" disabled></div>\n' +
                         '                <div class="col-sm-2" id="sklNm"><span></span></div>\n' +
-                        '                <div class="col-sm-1" id="sklTot"><input class="form-control" type="text" id="sklITot" placeholder="0"\n' +
+                        '                <div class="col-sm-1"><input class="form-control" type="text" id="sklTot" placeholder="0"\n' +
                         '                                                         disabled></div>\n' +
-                        '                <div class="col-sm-1" id="sklIRnk"><input class="form-control" id="rank" type="text" placeholder="0"></div>\n' +
-                        '                <div class="col-sm-1" id="sklIClsBon"><input class="form-control" id="clsBon" type="text" placeholder="0" disabled>\n' +
+                        '                <div class="col-sm-2"><div class="input-group">\n' +
+                        '                            <div class="input-group-prepend">\n' +
+                        '                                <button class="btn btn-outline-secondary" type="button" id="btnsklP">+1</button>\n' +
+                        '                            </div>\n' +
+                        '                            <input id="sklRnk" type="text" class="form-control" placeholder=""\n' +
+                        '                                   value="0" disabled>\n' +
+                        '                            <div class="input-group-append">\n' +
+                        '                                <button class="btn btn-outline-secondary" type="button" id="btnsklM">-1</button>\n' +
+                        '                            </div>\n' +
+                        '                        </div></div>\n' +
+                        '                <div class="col-sm-1"><input class="form-control" id="clsBon" type="text" placeholder="0" disabled>\n' +
                         '                </div>\n' +
-                        '                <div class="col-sm-1" id="sklIAbM"><input class="form-control" id="abM" type="text" disabled>\n' +
+                        '                <div class="col-sm-1"><input class="form-control" id="abM" type="text" disabled>\n' +
                         '                </div>\n' +
-                        '                <div class="col-sm-1" id="sklIMMd"><input class="form-control" type="text" placeholder="0" disabled></div>\n' +
+                        '                <div class="col-sm-1"><input class="form-control" type="text" placeholder="0" disabled></div>\n' +
                         '            </div>';
                     $('#skl').append(e);
                     $('#newID01').attr('id', 'chk' + data[v]['name']);
                     $('#sklNm').attr('id', "sklNm" + data[v]['name']);
                     $('#sklTot').attr('id', "sklTot" + data[v]['name']);
-                    $('#sklITot').attr('id', "sklITot" + data[v]['name']);
-                    $('#sklIRnk').attr('id', "sklIRnk" + data[v]['name']);
-                    $('#sklIClsBon').attr('id', "sklIClsBon" + data[v]['name']);
+                    $('#btnsklP').attr('id', "btnsklP" + data[v]['name']);
+                    $('#btnsklM').prop('id', 'btnsklM' + data[v]['name']);
+                    $('#sklRnk').attr('id', "sklRnk" + data[v]['name']);
                     $('#clsBon').attr('id', "clsBon" + data[v]['name']);
-                    $('#sklIAbM').attr('id', "sklIAbM" + data[v]['name']);
                     $('#abM').prop('id', 'abM' + data[v]['name']).prop('value', data['abMod'][data[v]['mod']]);
-                    $('#sklIMMd').attr('id', "sklIMMd" + data[v]['name']);
                     $('#rank').attr('id', "rank" + data[v]['name']);
                     $('#sklNm' + data[v]['name'] + ' span').text(data[v]['flavNam']);
                     if (data[v]['class'].includes(charCls)) {
                         $('#chk' + data[v]['name']).prop('checked', true);
                         $('#clsBon' + data[v]['name']).prop('value', '3');
-                    } else{
+                    } else {
                         $('#clsBon' + data[v]['name']).prop('value', '0');
                     }
                 }
             }
         });
-    }); //TODO - The code below needs to be srsly cleaned up its a hot mess CRD 12/21/18
-    $(document).on('change', '[id^=rank]', function () {
-        //Set Selectors
-        let y = $(this).attr('id');
-        let ranksA = $('#ranks');
-        let bon = $('#' + y.replace('rank', 'clsBon'));
-        let abM = $('#' + y.replace('rank', 'abM'));
-        let tot = $('#' + y.replace('rank', 'sklITot'));
+    });
+    $(document).on('click', '[id^=btnsklP]', function () {
+        let tRnk = $('#ranks')
+        if (tRnk.val() === "0") {
+            console.log('No more skill ranks available!')
+            //$(this).prop('disabled')
+        } else {
+            tRnk.prop('value', tRnk.val() - 1);
+
+            //Set values
+            let y = $(this).prop('id')
+            let a = y.replace('btnsklP', '')
+            console.log(a);
+            let sRnk = $('#sklRnk' + a);
+
+            //Increase value in rnk input by 1
+            sRnk.prop('value', parseInt(sRnk.val()) + 1);
+
+            //Make our total by adding clsBon, abM, and rnk together
+            let bon = $('#clsBon' + a);
+            let abM = $('#abM' + a);
+            let tot = $('#sklTot' + a);
+
+            //Set our finVal
+            finVal = parseInt(sRnk.val()) + parseInt(abM.val()) + parseInt(bon.val());
+            tot.prop('value', finVal);
+
+            //Store the resulting data
+            retData[a] = {
+                tot: finVal,
+                rnk: sRnk.val(),
+                abm: abM.val(),
+                bon: bon.val()
+            };
+        }
+
+    });
+    $(document).on('click', '[id^=btnsklM]', function () {
+        let tRnk = $('#ranks');
+        tRnk.prop('value', parseInt(tRnk.val()) + 1);
 
         //Set values
-        let x = $(this).val();
-        let m = ranksA.val();
-        ranksA.prop('value', m - x);
+        let y = $(this).prop('id');
+        let a = y.replace('btnsklM', '');
+        console.log(a);
+        let sRnk = $('#sklRnk' + a);
 
-        //Finally we are going to set our final skill value
-        finVal = parseInt(x) + parseInt(abM.val()) + parseInt(bon.val());
-        tot.prop('value', finVal);
+        //Decrease value in rnk input by 1 TODO - we can only increment when we have ranks left
+        sRnk.prop('value', parseInt(sRnk.val()) - 1);
 
-        retData[y.replace('rank', '')] = {
+        //Make our total by adding clsBon, abM, and rnk together
+        let bon = $('#clsBon' + a);
+        let abM = $('#abM' + a);
+        let tot = $('#sklTot' + a);
+
+        //Set our finVal
+        if (sRnk.val() > "0") {
+            finVal = parseInt(sRnk.val()) + parseInt(abM.val()) + parseInt(bon.val());
+            tot.prop('value', finVal);
+        } else {
+            tot.prop('value', '0')
+        }
+
+        //Store the resulting data
+        retData[a] = {
             tot: finVal,
-            rnk: x,
+            rnk: sRnk.val(),
             abm: abM.val(),
             bon: bon.val()
         };
-        console.log(retData)
     });
+
     $('#sndSkl').on('click', function () {
         console.log(retData);
         $.post({

@@ -5,6 +5,7 @@ from reportlab.lib.pagesizes import letter
 
 
 class Character:
+    cls = ()
     attrRoll = []
     attribs = {}
     atribMod = {}
@@ -98,7 +99,7 @@ class Character:
         packet.seek(0)
         new_pdf = PdfFileReader(packet)
         # read your existing PDF
-        existing_pdf = PdfFileReader(open("original.pdf", "rb"))
+        existing_pdf = PdfFileReader(open("../original.pdf", "rb"))
         output = PdfFileWriter()
         # add the "watermark" (which is the new pdf) on the existing page
         page = existing_pdf.getPage(0)
@@ -107,7 +108,8 @@ class Character:
         output.addPage(page)
         output.addPage(page2)
         # finally, write "output" to a real file
-        outputStream = open("destination.pdf", "wb")
+        # TODO - This needs to be fixed such that it won't create a file with the same name CRD 12/27/18
+        outputStream = open("../destination.pdf", "wb")
         output.write(outputStream)
         outputStream.close()
 
