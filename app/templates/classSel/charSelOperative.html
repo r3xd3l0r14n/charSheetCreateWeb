@@ -1,4 +1,77 @@
 {% extends "base.html" %}
 {% block content %}
-<h3>Operative Selection Screen</h3>
+<div class="container">
+    <div class="row">
+        <div class="col align-self-start">
+            <div class="col align-self-start spHp-container" id="specT">
+                <p id="spec"></p>
+            </div>
+        </div>
+        <div class="col-6 align-self-center">
+            <form action="{{ url_for('charSelOperative') }}" method="post"><h3>Operative Abilities</h3>
+                <div id="abs">
+                </div>
+                <button type="submit" class="btn btn-primary ab-button" id="nextPage">Roll Attributes</button>
+            </form>
+
+        </div>
+        <div class="col align-self-start spHp-container">
+            <h6 id="keyScore">Key Ability Score: </h6>
+            <h6 id="sp">Stamina Points: </h6>
+            <h6 id="hp">Hit Points: </h6>
+            <h6 id="sRanks">Skills Ranks Per level: </h6>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var mData;
+    $(document).ready(function () {
+        $('#specT').hide();
+        $.getJSON(
+            '/get_class/Operative', function (data) {
+                mData = data;
+                $('#keyScore').append(data['keyScore']);
+                $('#sp').append(data['spT']);
+                $('#hp').append(data['hp']);
+                $('#sRanks').append(data['sRanksT']);
+                let i = 0;
+                for (key in data['1']['abilities']) {
+                    if (data['1']['abilities'].hasOwnProperty(key)) {
+                        let e = '<a class="ab-text" id="newID01" data-toggle="collapse" href="#EnvoyImprovisation" role="button" aria-expanded="false" aria-controls="collapseExample">Link With HREF</a><br></div>';
+                        let h = '<div class="collapse" id="newID02"><div class="card card-body" id="newID03"></div>';
+                        let t = data['1']['abilities'][key];
+                        $('#abs').append(e).append(h);
+                        $('#newID01').attr('href', "#" + key).attr('id', key + "H");
+                        $('#newID02').attr('id', key);
+                        $('#newID03').attr('id', key + "T");
+                        $("#" + key + "H").empty().append(t['title']);
+                        $("#" + key + "T").empty().append(t['flavText']);
+                        i++;
+                    }
+                }
+                $('#specializationT').append('<br><label for="sel1">Select a Specialization</label><select class="form-control" id="sel1" name="sel1"></select>');
+                $.each(data['1']['ospecs'], function (item) {
+                    let bar = data['1']['ospecs'][item];
+                    $("#sel1").append($('<option/>', {
+                        value: bar['value'],
+                        text: bar['title']
+                    }));
+                })
+            }
+        )
+    });
+    $(document).on('change', '#sel1', function () {
+        $('#specT').show();
+        let spec = $('#spec');
+        //console.log(mData['1']['improvs'][$(this).val()]['text'])
+        spec.empty();
+        spec.append(mData['1']['ospecs'][$(this).val()]['text']);
+        setTimeout(function () {
+            $('#specT').hide();
+        }, 10000)
+    });
+
+</script>
 {% endblock %}

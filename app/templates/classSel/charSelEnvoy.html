@@ -2,13 +2,18 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col align-self-start"></div>
+        <div class="col align-self-start">
+            <div class="col align-self-start spHp-container" id="impT">
+                <p id="imp"></p>
+            </div>
+        </div>
         <div class="col-6 align-self-center">
             <form action="{{ url_for('charSelEnvoy') }}" method="post"><h3>Envoy Abilities</h3>
                 <div id="abs">
                 </div>
                 <button type="submit" class="btn btn-primary ab-button" id="nextPage">Roll Attributes</button>
             </form>
+
         </div>
         <div class="col align-self-start spHp-container">
             <h6 id="keyScore">Key Ability Score: </h6>
@@ -21,9 +26,12 @@
 </div>
 
 <script>
+    var mData;
     $(document).ready(function () {
+        $('#impT').hide();
         $.getJSON(
             '/get_class/Envoy', function (data) {
+                mData = data;
                 $('#keyScore').append(data['keyScore']);
                 $('#sp').append(data['spT']);
                 $('#hp').append(data['hp']);
@@ -53,6 +61,17 @@
                 })
             }
         )
-    })
+    });
+    $(document).on('change', '#sel1', function () {
+        $('#impT').show();
+        let imp = $('#imp');
+        //console.log(mData['1']['improvs'][$(this).val()]['text'])
+        imp.empty();
+        imp.append(mData['1']['improvs'][$(this).val()]['text']);
+        setTimeout(function () {
+            $('#impT').hide();
+        }, 10000)
+    });
+
 </script>
 {% endblock %}

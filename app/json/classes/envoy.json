@@ -7,24 +7,6 @@
   "sRanksT": "8 + Intelligence Modifier",
   "sRanksABM" : "int",
   "sRanks" : "8",
-  "cSkills": [
-    "Acrobatics",
-    "Athletics",
-    "Bluff",
-    "Computers",
-    "Culture",
-    "Diplomacy",
-    "Disguise",
-    "Engineering",
-    "Intimidate",
-    "Medicine",
-    "Perception",
-    "Piloting",
-    "Profession",
-    "Sense Motive",
-    "Sleight of Hand",
-    "Stealth"
-  ],
   "aProf": "Light Armor",
   "wProf": [
     "Basic Melee",
@@ -51,12 +33,12 @@
       }
     },
     "improvs" : {
-      "1": {
+      "clFeint": {
         "title" : "Clever Feint",
         "value" : "clFeint",
         "text" : "As a standard action you can fake out an enenmy within 60 feet, making that enemy open to your attacks. Attempt a Bluff check with the same DC as a check to feint against that enemy (though this isn't a standard check to feint, so Improved Feint and Greater Feint don't apply). Even if you fail, that enemy is flat-footed against your attacks until the end of your next turn. If you succeed, the enemy is also flat-footed against your allie's attacks until the end of your next turn. You can't use clever feint against a creature that lacks an Intellgience Score. At 6th level, you can spend 1 Resolve Point to treat a failed Bluff check for clever feint as if it were a success."
       },
-      "2" : {
+      "disTaunt" : {
         "title" : "Dispiriting Taunt",
         "value" : "disTaunt",
         "text" : "As a standard action you can taunt an enemy within 60 feet. Attempt an Intimidate Check with the same DC as a check to demoralize that enemy (thought this isn't a check to demoralize, so you can't use abilities that would apply to a demoralization attempt, like the rattling presence expertise talent). If you fail, that enemy is off-target until the end of your next turn. If you succeed, that enemy is instead shaken until the end of your next turn. This is an emotion and fear effect. At 6th level you can spend 1 resolve point to trat a fialed intimidate check for dispiriting taunt as if it were a success."

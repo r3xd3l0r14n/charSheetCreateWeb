@@ -8,8 +8,8 @@
             <h1>Select a Class</h1>
             <div class="class-card-group" id="class-card-group">
                 <div class="class-card" id="class-card-envoy">Envoy</div>
-                <div class="class-card" id="class-card-solarian">Solarian</div>
                 <div class="class-card" id="class-card-mechanic">Mechanic</div>
+                <div class="class-card" id="class-card-solarian">Solarian</div>
                 <div class="class-card" id="class-card-soldier">Soldier</div>
                 <div class="class-card" id="class-card-mystic">Mystic</div>
                 <div class="class-card" id="class-card-technomancer">Technomancer</div>
@@ -64,7 +64,7 @@
             '/get_class/' + v.text(),
             function (data) {
                 $('#cls-header').text(v.text());
-                $('#cls-data').empty().append(data[v.text()]['FlavText'])
+                $('#cls-data').empty().append(data['FlavText'])
             }
         )
     });
@@ -112,7 +112,7 @@
             '/get_class/' + v.text(),
             function (data) {
                 $('#cls-header').text(v.text());
-                $('#cls-data').empty().append(data[v.text()]['FlavText'])
+                $('#cls-data').empty().append(data['FlavText'])
             }
         )
     });

@@ -1,5 +1,48 @@
 {
-  "Operative": {
-    "FlavText": "You’re a shadow. You move swiftly, strike suddenly, and always have an escape plan. You’re a consummate professional, and you always get the job done, whether it’s scouting enemy lines, hunting down criminals, stealing and smuggling items, or assassinating key figures. As an operative, you're skilled in a wide variety of disciplines and specialties, and use speed, mobility, and your quick wits rather than relying on heavy weapons. You excel at the art of surprise, whether it’s sniping targets from cover or striking while their backs are turned. Your cause may be righteous, but you have no problem fighting dirty—achieving your objective is all that matters."
+  "FlavText": "You’re a shadow. You move swiftly, strike suddenly, and always have an escape plan. You’re a consummate professional, and you always get the job done, whether it’s scouting enemy lines, hunting down criminals, stealing and smuggling items, or assassinating key figures. As an operative, you're skilled in a wide variety of disciplines and specialties, and use speed, mobility, and your quick wits rather than relying on heavy weapons. You excel at the art of surprise, whether it’s sniping targets from cover or striking while their backs are turned. Your cause may be righteous, but you have no problem fighting dirty—achieving your objective is all that matters.",
+  "keyScore": "Dexterity",
+  "spT": "6 + Constitution Modifier",
+  "sp" : "6",
+  "hp": "6",
+  "sRanksT": "8 + Intelligence Modifier",
+  "sRanksABM" : "int",
+  "sRanks" : "8",
+  "aProf": "Light Armor",
+  "wProf": [
+    "Basic Melee",
+    "Small Arms",
+    "Sniper Weapons"
+  ],
+  "1": {
+    "bab": "0",
+    "fSave": "0",
+    "rSave": "2",
+    "wSave": "2",
+    "abilities": {
+      "opedge" : {
+        "title" : "Operatives Edge",
+        "flavText" : "Your diverse training as an operative grants you a +1 insight bonus to initiative checks and to skill checks. This bonus increases by 1 at 3rd level and every 4 levels thereafter."
+      },
+      "specialization" : {
+        "title" : "Specialization",
+        "flavText" : "Your specialization represents your primary area of expertise. Pick one specialization upon taking your 1st level of the operative class. Once made, this choice cannot be changed. Your specialization grants you the Skill Focus feat in your specialization’s associated skills, and you gain a free skill rank in each of those skills at each operative level (this does not allow you to exceed the maximum number of skill ranks in a single skill)."
+      },
+      "trickattack" : {
+        "title" : "Trick Attack",
+        "flavText" : "You can trick or startle a foe and then attack when she drops her guard. As a full action, you can move up to your speed. Whether or not you moved, you can then make an attack with a melee weapon with the operative special property or with any small arm. Just before making your attack, attempt a Bluff, Intimidate, or Stealth check (or a check associated with your specialization) with a DC equal to 20 + your target’s CR. If you succeed at the check, you deal 1d4 additional damage and the target is flat-footed. This damage increases to 1d8 at 3rd level, to 3d8 at 5th level, and by an additional 1d8 every 2 levels thereafter. You can’t use this ability with a weapon that has the unwieldy special property or that requires a full action to make a single attack."
+      }
+    },
+    "ospecs" : {
+      "ddevil": {
+        "title" : "Daredevil",
+        "value" : "ddevil",
+        "text" : "You specialize in missions requiring courage and athleticism. "
+      },
+      "detective" : {
+        "title" : "Detective",
+        "value" : "detective",
+        "text" : "Your ability to read people and make deductions helps you ferret out the truth in any situation."
+      }
+    }
   }
-}
+  }

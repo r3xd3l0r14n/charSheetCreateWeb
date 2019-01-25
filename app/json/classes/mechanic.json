@@ -1,5 +1,46 @@
 {
-  "Mechanic": {
-    "FlavText": "You are a master of machines, from advanced supercomputers to simple magnetic engines. Understanding how these devices work gives you insight into the world around you, allowing you to make the most of your gear, circumvent hardened defenses, and even take over remote systems. Your programming skill also gives you the ability to create a powerful ally, in the form of either an implanted artificial intelligence or a robotic drone, which can assist you with a variety of tasks. If there’s a computer or machine that needs to be fixed, bypassed, or destroyed, you’re the first on the scene. Whether you’re a skilled scientist, a starship engineer, or a battlefield technician, you’re no stranger to combat—but you find it much more reasonable to have your AI or drone do the fighting for you."
+  "FlavText": "You are a master of machines from advanced supercomputers to simple magnetic engines. Understanding how these devices work gives you insight into the world around you, allowing you to make the most of your gear, circumvent hardened defenses, and even take over remote systems. Your programming skill also gives you the ability to create a powerful ally, in the form of either an implanted artificial intelligence or a robotic drone, which can assist you with a variety of tasks. If there’s a computer or machine that needs to be fixed, bypassed, or destroyed, you’re the first on the scene. Whether you’re a skilled scientist, a starship engineer, or a battlefield technician, you’re no stranger to combat—but you find it much more reasonable to have your AI or drone do the fighting for you.",
+  "keyScore": "Intelligence",
+  "spT": "6 + Constitution Modifier",
+  "sp": "6",
+  "hp": "6",
+  "sRanksT": "4 + Intelligence Modifier",
+  "sRanksABM": "int",
+  "sRanks": "4",
+  "aProf": "Light Armor",
+  "wProf": [
+    "Basic Melee",
+    "Grenades",
+    "Small Arms"
+  ],
+  "1": {
+    "bab": "0",
+    "fSave": "2",
+    "rSave": "2",
+    "wSave": "0",
+    "abilities" :{
+    "ArtIntel":{
+      "title" : "Artificial Intelligence",
+      "flavText" : "You construct an artificial intelligence (or AI), a sophisticated program of self-motivated code that you can access for help in a variety of endeavors. This AI is the product of your own genius, far more advanced and complicated than any available for sale to consumers (though it falls short of being truly self-aware), and only you know the secrets of its creation and operation. Your AI can take one of two forms: a drone or an exocortex. You must pick one of these forms upon taking your first level of mechanic, and once this choice is made, it cannot be changed."
+    },
+    "Bypass":{
+      "title" : "Bypass",
+      "flavText" : "You are skilled at getting inside computer systems and electronic devices. At 1st level, you gain a +1 insight bonus to Computers and Engineering skill checks. At 5th level, every 4 levels thereafter, and at 20th level, this bonus increases by 1."
+    },
+    "CustRig" : {
+      "title" : "Custom Rig",
+      "flavText" : "You have created a customized toolkit you can use to hack systems and items. Your custom rig can be configured to take up an upgrade slot on your armor or can be installed as a cybernetic augmentation system in your brain (though it can be combined with a datajack for the same price as installing a datajack normally), your eyes, or an arm. For more information on augmentations, see Equipment. Alternatively, you can configure it to be a handheld device, meaning that you must retrieve it and hold it to use it effectively. While using this rig, you always count as having the appropriate tool or basic kit for any Computers or Engineering skill check you attempt. Some mechanic tricks and drone mods require the use of a custom rig. In addition, you can use your custom rig as a Mk I comm unit (see Equipment). Finally, if you have a drone, you can use your custom rig to communicate over an encrypted channel with your drone to issue commands to its AI or directly control it at a range of 2,500 feet. \n If your custom rig is damaged, destroyed, lost, or stolen, you can kitbash a new one from any engineering kit, hacking kit, or other technological toolkit, reconfiguring the materials into a new custom rig with 1 hour of work. You can have only one custom rig at a time. If you create a new custom rig, your old one functions as a normal toolkit of whatever type you made it from and can no longer be used with your mechanic tricks."
+    }},
+    "AI" :{
+      "drn" : {
+        "title" : "Drone",
+        "value" : "drn",
+        "text" : "If you choose the drone option for your Artificial intelligence, you begin play with a robotic drone that you design. See Building Your drone below for instructions on creating your drone. All drones have a neutral alignment and the same senses as an ordinary human. A drone is considered a construct with the technological subtype for the purposes of spells and effects targeting it. Your drone speaks all of the languages that you do. Your drone is proficient in your choice of small arms or basic melee weapons, and it gains specialization in that weapon type once you reach 3rd level. Like most constructs, a drone cannot recover from damage on its own. If a drone is reduced to 0 Hit Points, it becomes inactive until it is restored to 1 Hit Point or more. If a drone takes damage from a single attack equal to or greater than its maximum Hit Points while it has 0 current HP, the drone is destroyed. If your drone is ever destroyed or lost, you retain its mind and all its subroutines in your custom rig and can replace its body for free using your custom rig after 24 hours of uninterrupted work. You can take a single 8-hour rest during each 24 hours spent working, but any other interruption greater than a moment of conversation requires you to add 12 hours to the time required to rebuild your drone. In addition, every time you gain a mechanic level, you can rebuild your drone from scratch with the same amount of work, allowing you to change any or all of the choices you made for your drone (including ability scores, chassis, feats, mods, and skills)." },
+    "excor" : {
+      "title" : "Exocortex",
+      "value" : "excor",
+      "text" : "The exocortex grants a number of different abilities described below"
+    }}
+
   }
-}
+  }

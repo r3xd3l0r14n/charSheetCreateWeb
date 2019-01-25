@@ -112,7 +112,7 @@
 
             //Store the resulting data
             retData[a] = {
-                tot: finVal,
+                tot: finVal.toString(),
                 rnk: sRnk.val(),
                 abm: abM.val(),
                 bon: bon.val()
@@ -150,13 +150,13 @@
         retData[a] = {
             tot: finVal,
             rnk: sRnk.val(),
+            bon: bon.val(),
             abm: abM.val(),
-            bon: bon.val()
+
         };
     });
 
     $('#sndSkl').on('click', function () {
-        console.log(retData);
         $.post({
             url: '/setSkills',
             contentType: 'application/json',
