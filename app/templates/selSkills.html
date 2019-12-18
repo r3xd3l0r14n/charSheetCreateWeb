@@ -32,6 +32,7 @@
     $(window).load(function () {
         $.getJSON('/getSkills', function (data) {
             let charCls = data['class'];
+            console.log(charCls)
             globData = data;
             for (v in data) {
                 if (v === 'ranks') {
@@ -74,18 +75,22 @@
                     $('#abM').prop('id', 'abM' + data[v]['name']).prop('value', data['abMod'][data[v]['mod']]);
                     $('#rank').attr('id', "rank" + data[v]['name']);
                     $('#sklNm' + data[v]['name'] + ' span').text(data[v]['flavNam']);
+                    if (charCls === "solarian"){
+                        $('#chk'+data[v]['name']).prop('disabled', false)
+                    }
                     if (data[v]['class'].includes(charCls)) {
                         $('#chk' + data[v]['name']).prop('checked', true);
                         $('#clsBon' + data[v]['name']).prop('value', '3');
                     } else {
                         $('#clsBon' + data[v]['name']).prop('value', '0');
                     }
+
                 }
             }
         });
     });
     $(document).on('click', '[id^=btnsklP]', function () {
-        let tRnk = $('#ranks')
+        let tRnk = $('#ranks');
         if (tRnk.val() === "0") {
             console.log('No more skill ranks available!')
             //$(this).prop('disabled')
@@ -93,8 +98,8 @@
             tRnk.prop('value', tRnk.val() - 1);
 
             //Set values
-            let y = $(this).prop('id')
-            let a = y.replace('btnsklP', '')
+            let y = $(this).prop('id');
+            let a = y.replace('btnsklP', '');
             console.log(a);
             let sRnk = $('#sklRnk' + a);
 
@@ -155,7 +160,7 @@
 
         };
     });
-
+    
     $('#sndSkl').on('click', function () {
         $.post({
             url: '/setSkills',

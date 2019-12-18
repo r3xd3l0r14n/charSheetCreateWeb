@@ -1,0 +1,9 @@
+{
+  "1": {
+    "name": "bmwP",
+    "flavNam": "Basic Melee Weapon Proficiency*",
+    "flavText" : "You know how to use basic melee weapons. Benefit: You gain proficiency in basic melee weapons (see Weapon Proficiency on page 243).",
+    "preReq":"-",
+    "pText":"Basic Melee Weapon Proficiency. Ref. Pg 243 in CRB"
+    }
+  }

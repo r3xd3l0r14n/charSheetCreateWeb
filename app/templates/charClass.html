@@ -52,7 +52,7 @@
             '/get_class/' + v.text(),
             function (data) {
                 $('#cls-header').text(v.text());
-                $('#cls-data').empty().append(data[v.text()]['FlavText'])
+                $('#cls-data').empty().append(data['FlavText'])
             }
         )
     });

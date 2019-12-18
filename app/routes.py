@@ -62,8 +62,12 @@ def charSelMechanic():
     return render_template('classSel/charSelMechanic.html', title="Mechanic")
 
 
-@app.route('/charSelectionSolarian')
+@app.route('/charSelectionSolarian', methods=['GET', 'POST'])
 def charSelSolarian():
+    if request.method == 'POST':
+        v = request.form['sel1']
+        session['slrMan'] = v
+        return redirect(url_for('rollAttrib'))
     return render_template('classSel/charSelSolarian.html', title="Solarian")
 
 
@@ -102,14 +106,17 @@ def rollAttrib():
 @app.route('/selSkills', methods=['GET', 'POST'])
 def selSkills():
     if request.method == 'POST':
-        char.createPDF(session)
-        #return redirect(url_for("feats"))  # TODO - Change this back later
-        return redirect(url_for('show_static_pdf'))
+        #char.createPDF(session)
+        return redirect(url_for("feats"))  # TODO - Change this back later
+        #return redirect(url_for('show_static_pdf'))
     return render_template('selSkills.html', title='Select Skills')
 
 
 @app.route('/feats', methods=['GET', 'POST'])
 def feats():
+    if request.method == 'POST':
+        char.createPDF(session)
+        return redirect(url_for('show_static_pdf'))
     return render_template('feats.html', title='Feats')
 
 
@@ -179,6 +186,10 @@ def setSkill():
     session['sRanks'] = char.setSkills(data, session['class'])
     return "Got the message"
 
+@app.route('/setFeats', methods=['GET', 'POST'])
+def setFeats():
+    data = request.json
+    session['feats'] = char.setFeats(data, session['class'])
 
 @app.route('/killSession')
 def killSession():

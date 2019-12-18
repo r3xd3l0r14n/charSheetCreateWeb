@@ -151,5 +151,8 @@ class Character():
         finJ = {"charN":self.name}
         return finJ
 
+    def setFeats(self, data, param):
+        pass
+
 
 
