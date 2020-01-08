@@ -32,7 +32,7 @@
     $(window).load(function () {
         $.getJSON('/getSkills', function (data) {
             let charCls = data['class'];
-            console.log(charCls)
+            console.log(charCls);
             globData = data;
             for (v in data) {
                 if (v === 'ranks') {

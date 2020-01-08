@@ -1,4 +1,74 @@
 {% extends "base.html" %}
 {% block content %}
-<h3>Feats page will go here. Best bet is to handle same way as classes page.</h3>
+<div class="container">
+    <div class="row">
+        <div class="col align-self-start">
+            <div class="col align-self-start spHp-container" id="selS">
+                <h3>Selected Feats</h3>
+                <p id="listF"></p>
+            </div>
+        </div>
+        <div class="col-6 align-self-center">
+            <form method="post"><h3>Feats</h3>
+                <div id="abs">
+                    <label for="selF">Select a Feat</label>
+                    <select class="form-control" id="selF" name="selF"></select>
+                    <br>
+                    <div class="col align-self-start spHp-container" id="selT">
+                        <p id="sel"></p>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary ab-button" id="nextPage">Select Feats</button>
+            </form>
+
+        </div>
+        <div class="col align-self-start spHp-container">
+
+            <button class="btn btn-primary" id="add">Add Feats</button>
+            <button class="btn btn-primary" id="setFeats">Set Feats</button>
+        </div>
+    </div>
+
+</div>
+<script>
+    var mData;
+    let setData={};
+    let i = 0
+    $(document).ready(function () {
+        $('#selT').hide();
+        $.getJSON(
+            '/getFeats', function (data) {
+                mData = data
+                $.each(data, function (i) {
+                    let bar = data[i]
+                    console.log(data[i])
+                    $("#selF").append($('<option/>', {
+                        value: bar['name'],
+                        text: bar['flavNam']
+                    }))
+                })
+            });
+    })
+    $(document).on('change', '#selF', function () {
+        $('#selT').show();
+        let sel = $('#sel');
+        sel.empty()
+        sel.append(mData[$('#selF').prop('selectedIndex')]['flavText']);
+        setTimeout(function () {
+            $('#sel').hide()
+        }, 10000)
+    });
+    $('#add').on('click', function () {
+        $('#listF').append(mData[$('#selF').prop('selectedIndex')]['flavNam'], '<br>');
+        setData[i] = mData[$('#selF').prop('selectedIndex')];
+        i++;
+    })
+    $('#setFeats').on('click', function () {
+        $.post({
+            url: '/setFeats',
+            contentType: 'application/json',
+            data: JSON.stringify(setData)
+        })
+    })
+</script>
 {% endblock %}

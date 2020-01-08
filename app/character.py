@@ -8,7 +8,8 @@ cwd = os.getcwd()
 
 with open(cwd+'/app/json/skills.json', 'rb') as f:
     mSkills = json.load(f)
-
+with open(cwd+'/app/json/feats.json', 'rb') as f:
+    mFeats = json.load(f)
 class Character():
     attrRoll = []
     attribs = {}
@@ -86,7 +87,7 @@ class Character():
         return self.sRanks
         #TODO - Finish this section for final CRD 12/24/2018
 
-    def createPDF(self,ses):
+    def createPDF(self, ses):
         packet = io.BytesIO()
         # create a new PDF with Reportlab
         can = canvas.Canvas(packet, pagesize=letter)
@@ -126,6 +127,8 @@ class Character():
                 can.drawString(nm['pos']['xBon'], nm['pos']['yBon'], ses['skills'][nm['name']]['bon'])
                 # Ability Mod
                 can.drawString(nm['pos']['xAbm'], nm['pos']['yAbm'], ses['skills'][nm['name']]['abm'])
+        for s in mFeats:
+            print(s)
         can.save()
 
         # move to the beginning of the StringIO buffer
@@ -150,9 +153,5 @@ class Character():
     def toJson(self):
         finJ = {"charN":self.name}
         return finJ
-
-    def setFeats(self, data, param):
-        pass
-
 
 

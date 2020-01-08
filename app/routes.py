@@ -106,9 +106,9 @@ def rollAttrib():
 @app.route('/selSkills', methods=['GET', 'POST'])
 def selSkills():
     if request.method == 'POST':
-        #char.createPDF(session)
+        # char.createPDF(session)
         return redirect(url_for("feats"))  # TODO - Change this back later
-        #return redirect(url_for('show_static_pdf'))
+        # return redirect(url_for('show_static_pdf'))
     return render_template('selSkills.html', title='Select Skills')
 
 
@@ -123,7 +123,7 @@ def feats():
 # Final Screen to show the pdf Files
 @app.route('/show/static-pdf')
 def show_static_pdf():
-    return send_file(cwd+'/app/destination.pdf', mimetype='application/pdf', attachment_filename='file.pdf')
+    return send_file(cwd + '/app/destination.pdf', mimetype='application/pdf', attachment_filename='file.pdf')
 
 
 ###################################
@@ -147,7 +147,6 @@ def get_class(charCls):
     with open(charClsJson, 'rb') as file:
         charClsFile = json.load(file)
     return jsonify(charClsFile)
-
 
 
 @app.route('/get_attrib')
@@ -186,10 +185,21 @@ def setSkill():
     session['sRanks'] = char.setSkills(data, session['class'])
     return "Got the message"
 
+
 @app.route('/setFeats', methods=['GET', 'POST'])
 def setFeats():
     data = request.json
-    session['feats'] = char.setFeats(data, session['class'])
+    session['feats'] = data
+    print(data)
+    return "Got the Message"
+
+
+@app.route('/getFeats', methods=['GET', 'POST'])
+def getFeats():
+    with open(cwd + '/app/json/feats.json', 'rb') as f:
+        featsJSON = json.load(f)
+        return jsonify(featsJSON)
+
 
 @app.route('/killSession')
 def killSession():
