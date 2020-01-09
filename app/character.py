@@ -3,13 +3,14 @@ import io, random, os, json
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 
-
 cwd = os.getcwd()
 
-with open(cwd+'/app/json/skills.json', 'rb') as f:
+with open(cwd + '/app/json/skills.json', 'rb') as f:
     mSkills = json.load(f)
-with open(cwd+'/app/json/feats.json', 'rb') as f:
+with open(cwd + '/app/json/feats.json', 'rb') as f:
     mFeats = json.load(f)
+
+
 class Character():
     attrRoll = []
     attribs = {}
@@ -81,11 +82,11 @@ class Character():
 
     def setSkills(self, data, cls):
         self.skills = data
-        with open(cwd+'/app/json/classes/'+cls.lower()+'.json', 'rb') as f:
+        with open(cwd + '/app/json/classes/' + cls.lower() + '.json', 'rb') as f:
             clsFile = json.load(f)
-        self.sRanks = int(clsFile['sRanks'])+int(self.atribMod[clsFile['sRanksABM']])
+        self.sRanks = int(clsFile['sRanks']) + int(self.atribMod[clsFile['sRanksABM']])
         return self.sRanks
-        #TODO - Finish this section for final CRD 12/24/2018
+        # TODO - Finish this section for final CRD 12/24/2018
 
     def createPDF(self, ses):
         packet = io.BytesIO()
@@ -94,7 +95,7 @@ class Character():
         can.drawString(155, 753, ses['char'])  # Draw the name on the top
         can.drawString(215, 731, ses['race'])  # Draw our character race on the sheet
         can.drawString(165, 710, ses['gender'])  # Draw gender
-        can.drawString(20, 730,  ses['class'])  # Draw Class
+        can.drawString(20, 730, ses['class'])  # Draw Class
         can.drawString(315, 730, ses['theme'])  # Theme
         can.drawString(256.5, 483, str(ses['sRanks']))  # Draw skill levels
         # Draw ability scores
@@ -115,7 +116,7 @@ class Character():
             if ses['class'].lower() in mSkills[s]['class']:
                 x = float(mSkills[s]["pos"]["x"])
                 y = float(mSkills[s]["pos"]["y"])
-                can.drawImage('10003.png', x, y, 10, 8,
+                can.drawImage('checkMark.png', x, y, 10, 8,
                               mask=[255, 255, 255, 255, 255, 255])
             if mSkills[s]['name'] in ses['skills']:
                 nm = mSkills[s]
@@ -127,31 +128,40 @@ class Character():
                 can.drawString(nm['pos']['xBon'], nm['pos']['yBon'], ses['skills'][nm['name']]['bon'])
                 # Ability Mod
                 can.drawString(nm['pos']['xAbm'], nm['pos']['yAbm'], ses['skills'][nm['name']]['abm'])
-        for s in mFeats:
-            print(s)
+        can.showPage()
+        iF = 0
+        yF = 401
+        for s in ses['feats']:
+            xF = 17.5
+            if iF != 0:
+                yF -= 14
+            can.drawString(xF, yF, ses['feats'][s]['flavNam'])
+            xF = 30
+            yF -= 14
+            can.drawString(xF, yF, ses['feats'][s]['pText'])
+            iF += 1
         can.save()
 
         # move to the beginning of the StringIO buffer
         packet.seek(0)
         new_pdf = PdfFileReader(packet)
         # read your existing PDF
-        existing_pdf = PdfFileReader(open(cwd+"/app/original.pdf", "rb"))
+        existing_pdf = PdfFileReader(open(cwd + "/app/original.pdf", "rb"))
         output = PdfFileWriter()
         # add the "watermark" (which is the new pdf) on the existing page
         page = existing_pdf.getPage(0)
         page2 = existing_pdf.getPage(1)
         page.mergePage(new_pdf.getPage(0))
+        page2.mergePage(new_pdf.getPage(1))
         output.addPage(page)
         output.addPage(page2)
         # finally, write "output" to a real file
         # TODO - This needs to be fixed such that it won't create a file with the same name CRD 12/27/18
-        outputStream = open(cwd+"/app/destination.pdf", "wb")
+        outputStream = open(cwd + "/app/destination.pdf", "wb")
         output.write(outputStream)
         outputStream.close()
 
-### toJson Method
+    ### toJson Method
     def toJson(self):
-        finJ = {"charN":self.name}
+        finJ = {"charN": self.name}
         return finJ
-
-
